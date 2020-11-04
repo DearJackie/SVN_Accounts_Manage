@@ -1,0 +1,43 @@
+### This file is an example authorization file for svnserve.
+### Its format is identical to that of mod_authz_svn authorization
+### files.
+### As shown below each section defines authorizations for the path and
+### (optional) repository specified by the section name.
+### The authorizations follow. An authorization line can refer to:
+###  - a single user,
+###  - a group of users defined in a special [groups] section,
+###  - an alias defined in a special [aliases] section,
+###  - all authenticated users, using the '$authenticated' token,
+###  - only anonymous users, using the '$anonymous' token,
+###  - anyone, using the '*' wildcard.
+###
+### A match can be inverted by prefixing the rule with '~'. Rules can
+### grant read ('r') access, read-write ('rw') access, or no access
+### ('').
+
+### naming conventions:
+###  1.all the user sames and group names are only lower chars, numeric
+###  2. group name and repo folder names are seperated by "_"
+###  3. user names are separated by "."
+
+###
+### access groups definition
+###
+[groups]
+admin_group = jackie.cai.admin
+
+hw_group = jeff.lo,yafo.yang,jianfeng.yin,yongwei.li,hua.xiang,wu.xu
+
+# reserved group
+visitors_group = tony.tang
+temporary_group = amy.wu
+
+###
+### access rights definition
+###
+[/]
+@admin_group = rw
+
+[/Execrise]
+@admin_group = rw
+* =
